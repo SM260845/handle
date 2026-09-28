@@ -26,7 +26,7 @@ About sixty seconds later, `@adam` is live with four doors under one identity:
 
 ## Status
 
-**Pre-alpha, spec-first.** See the [roadmap](./roadmap.md) and [`BUILD_SPEC.md`](https://github.com/SM260845/handle/blob/main/BUILD_SPEC.md).
+**Pre-alpha.** Stage 0–1 done (foundations + registry). Claim is not live yet. See the [roadmap](./roadmap.md) and [`BUILD_SPEC.md`](https://github.com/SM260845/handle/blob/main/BUILD_SPEC.md).
 
 ## Next
 

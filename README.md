@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Pages](https://img.shields.io/badge/docs-GitHub%20Pages-green)](https://sm260845.github.io/handle/)
 
-> **Status:** pre-alpha, spec-first. Foundations (Stage 0) in progress — Claim is not live yet. See [`BUILD_SPEC.md`](./BUILD_SPEC.md).
+> **Status:** pre-alpha, spec-first. Stages 0–1 done (foundations + registry). Claim is not live yet. See [`BUILD_SPEC.md`](./BUILD_SPEC.md).
 
 **Your agent gets a name before it gets a job.**
 

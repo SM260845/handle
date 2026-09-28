@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Stage 1 handle registry (`@handle/registry`): name rules + reserved list, Memory + Sqlite stores (UNIQUE name), lease/TTL reserve→confirm→release, claim rate limits via `@handle/quota` `guard()`
+- Stage 1 control-plane API (`@handle/api`): `POST|GET|DELETE /v1/handles` with Idempotency-Key, DevToken + DevMagicLink auth stubs (real GitHub OAuth deferred)
+- CLI: `handle claim @name` hits the registry when `HANDLE_API_URL` + `HANDLE_API_TOKEN` are set
+
+
 - Monorepo scaffold (pnpm workspaces, TypeScript, ESLint, Prettier, Vitest)
 - `@handle/quota` with typed limit table, `check()`, windowed counters, dedup guard, and budget circuit breaker (Stage 0 exit)
 - `handle` CLI stubs: `claim` / `status` / `ping` / `move` (exit non-zero with stage hint)

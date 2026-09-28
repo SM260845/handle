@@ -6,6 +6,10 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
+    ignore:
+      # Track Node 22 (see .nvmrc / engines). Do not auto-bump @types/node to 23+.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
       lint-format:
         patterns:

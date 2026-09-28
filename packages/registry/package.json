@@ -11,6 +11,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./sqlite": {
+      "types": "./dist/sqlite-store.d.ts",
+      "import": "./dist/sqlite-store.js"
     }
   },
   "files": [
@@ -20,5 +24,11 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run --root ../.. --dir packages/registry"
+  },
+  "dependencies": {
+    "@handle/quota": "workspace:*"
+  },
+  "engines": {
+    "node": ">=22.5"
   }
 }

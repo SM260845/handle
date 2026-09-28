@@ -38,7 +38,14 @@ importers:
 
   apps/web: {}
 
-  packages/api: {}
+  packages/api:
+    dependencies:
+      '@handle/quota':
+        specifier: workspace:*
+        version: link:../quota
+      '@handle/registry':
+        specifier: workspace:*
+        version: link:../registry
 
   packages/cli: {}
 
@@ -54,7 +61,11 @@ importers:
 
   packages/receipts: {}
 
-  packages/registry: {}
+  packages/registry:
+    dependencies:
+      '@handle/quota':
+        specifier: workspace:*
+        version: link:../quota
 
   packages/runtime: {}
 

@@ -1,0 +1,25 @@
+name: Stale
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/stale@v9
+        with:
+          days-before-stale: 60
+          days-before-close: 14
+          stale-issue-label: stale
+          stale-pr-label: stale
+          exempt-issue-labels: 'pinned,security,hero,stage:0,stage:1,stage:2,stage:3,stage:4,stage:5,stage:6,stage:7,stage:8,stage:9,stage:10'
+          exempt-pr-labels: 'pinned,security'
+          operations-per-run: 30

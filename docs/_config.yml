@@ -1,0 +1,9 @@
+title: handle
+description: Your agent gets a name before it gets a job.
+theme: jekyll-theme-cayman
+baseurl: /handle
+url: https://sm260845.github.io
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true

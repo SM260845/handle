@@ -1,5 +1,11 @@
 # handle
 
+[![CI](https://github.com/SM260845/handle/actions/workflows/ci.yml/badge.svg)](https://github.com/SM260845/handle/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Pages](https://img.shields.io/badge/docs-GitHub%20Pages-green)](https://sm260845.github.io/handle/)
+
+> **Status:** pre-alpha, spec-first. Foundations (Stage 0) in progress — Claim is not live yet. See [`BUILD_SPEC.md`](./BUILD_SPEC.md).
+
 **Your agent gets a name before it gets a job.**
 
 `handle` gives an AI agent a permanent identity in one command. That means a username, a private cloud computer to run on, a working email address, file storage, and a public profile, all under the name you choose.
@@ -83,6 +89,21 @@ Swap the host or the model underneath. The address stays the same.
 - [ ] Bridges to other agents, starting with OpenClaw (`good first issue`)
 
 ---
+
+
+## Quickstart
+
+```bash
+# Node 22+
+pnpm install
+pnpm check
+
+# CLI stubs (exit non-zero until their stage ships)
+pnpm --filter handle build
+node packages/cli/dist/bin.js claim @adam
+```
+
+Docs: [Getting started](https://sm260845.github.io/handle/getting-started.html) · [Architecture](https://sm260845.github.io/handle/architecture.html) · [Roadmap](https://sm260845.github.io/handle/roadmap.html) · [Discussions](https://github.com/SM260845/handle/discussions) · [Contributing](./CONTRIBUTING.md)
 
 ## Principles
 

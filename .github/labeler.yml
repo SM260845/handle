@@ -1,0 +1,42 @@
+area:cli:
+  - changed-files:
+      - any-glob-to-any-file: packages/cli/**
+area:api:
+  - changed-files:
+      - any-glob-to-any-file: packages/api/**
+area:registry:
+  - changed-files:
+      - any-glob-to-any-file: packages/registry/**
+area:orchestrator:
+  - changed-files:
+      - any-glob-to-any-file: packages/orchestrator/**
+area:runtime:
+  - changed-files:
+      - any-glob-to-any-file: packages/runtime/**
+area:receipts:
+  - changed-files:
+      - any-glob-to-any-file: packages/receipts/**
+area:mail:
+  - changed-files:
+      - any-glob-to-any-file: packages/mail/**
+area:storage:
+  - changed-files:
+      - any-glob-to-any-file: packages/storage/**
+area:profile:
+  - changed-files:
+      - any-glob-to-any-file: packages/profile/**
+area:quota:
+  - changed-files:
+      - any-glob-to-any-file: packages/quota/**
+area:move:
+  - changed-files:
+      - any-glob-to-any-file: packages/move/**
+area:sdk:
+  - changed-files:
+      - any-glob-to-any-file: packages/sdk/**
+area:web:
+  - changed-files:
+      - any-glob-to-any-file: apps/web/**
+type:docs:
+  - changed-files:
+      - any-glob-to-any-file: '{docs/**,*.md,.github/**/*.md}'

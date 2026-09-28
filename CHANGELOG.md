@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Package stubs for api, registry, orchestrator, runtime, receipts, mail, storage, profile, move, sdk, and `apps/web`
 - Community files, AGENTS.md, docs site, CI / CodeQL / Dependabot / triage / stale / Pages workflows
 - Stage issues 0–10, HERO Claim issue, OpenClaw bridge good-first-issue
+- Stage 0: ADR 0001 (Firecracker vs gVisor / Kata / Docker / Cloud Hypervisor) in `docs/adr/`
+- Stage 0: secrets pattern (`docs/secrets.md`, `.env.example`) and gitleaks secret-scan job in CI
+- Stage 0: `@handle/quota` `guard()` wiring helper + `QuotaExceededError`; gate test proving a fake over-limit call is denied before work runs
 
 ## [0.0.0] - 2026-09-28
 

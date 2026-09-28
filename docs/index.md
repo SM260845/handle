@@ -33,4 +33,6 @@ About sixty seconds later, `@adam` is live with four doors under one identity:
 - [Getting started](./getting-started.md)
 - [Architecture](./architecture.md)
 - [Roadmap](./roadmap.md)
+- [ADR 0001: Firecracker microVMs](./adr/0001-firecracker-microvm.md)
+- [Secrets pattern](./secrets.md)
 - [Discussions](https://github.com/SM260845/handle/discussions)

@@ -105,6 +105,30 @@ export class DedupGuard {
   }
 }
 
+/** Thrown by `guard()` when a quota denies a call. Callers must surface it, never retry past it. */
+export class QuotaExceededError extends Error {
+  constructor(public readonly decision: Extract<Decision, { allowed: false }>) {
+    super(decision.reason);
+    this.name = 'QuotaExceededError';
+  }
+}
+
+/**
+ * Wiring helper: consume quota FIRST, then run the work. If denied, `work` never runs.
+ * Every money-burning call site should look like `await guard(q, scope, 'emailSendsPerDay', () => send())`.
+ */
+export async function guard<T>(
+  counter: QuotaCounter,
+  scope: string,
+  key: LimitKey,
+  work: () => T | Promise<T>,
+  requested = 1,
+): Promise<T> {
+  const decision = counter.consume(scope, key, requested);
+  if (!decision.allowed) throw new QuotaExceededError(decision);
+  return work();
+}
+
 export type OutboundAction = 'email' | 'ping' | 'paid_model_call' | 'claim';
 
 export interface BudgetState {

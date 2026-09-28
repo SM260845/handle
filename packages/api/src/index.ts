@@ -1,13 +1,14 @@
 /**
- * @handle/api — Control plane HTTP API
+ * @handle/api — control plane HTTP API.
  *
- * TODO(Stage 1): Expose /v1/handles routes with auth + idempotency key + quota check before work.
- * See BUILD_SPEC.md §4 "Stage 1". Do not implement ahead of earlier stage gates.
+ * Stage 1: /v1/handles claim / get / release with dev auth stubs.
+ * TODO(Stage 1 follow-up): real GitHub OAuth authenticator; persistent idempotency store.
+ * TODO(Stage 2+): Claim transaction steps (VM, mail, storage) between reserve and confirm.
+ * All mutating routes: auth + idempotency key + quota check BEFORE work (BUILD_SPEC §6).
  */
+
+export * from './auth.js';
+export * from './server.js';
 
 export const PACKAGE = '@handle/api';
 export const STAGE = 1;
-
-export function status(): { package: string; stage: number; implemented: false } {
-  return { package: PACKAGE, stage: STAGE, implemented: false };
-}

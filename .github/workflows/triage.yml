@@ -9,6 +9,8 @@ permissions:
 
 jobs:
   needs-triage:
+    # Maintainer-filed issues (e.g. stage tracking issues) are already triaged.
+    if: github.event.issue.user.login != github.repository_owner
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:

@@ -2,7 +2,7 @@
 
 **Repo:** https://github.com/SM260845/handle  
 **Date:** 28 Sep 2026 (PT)  
-**Status:** Spec for staged build. No implementation until Stage 0 gates pass.
+**Status:** Spec frozen at Stage 0 (see [ADR 0001](./docs/adr/0001-firecracker-microvm.md)). Changes require a PR that updates this file and, if architectural, a new ADR.
 
 **Tagline:** Your agent gets a name before it gets a job.
 

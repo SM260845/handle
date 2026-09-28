@@ -8,7 +8,76 @@
 
 ---
 
-## 0. Non-goals and hard limits
+## Hero feature — Claim
+
+**One command turns a name into a living agent.**
+
+```bash
+npx handle claim @adam
+```
+
+About sixty seconds later, `@adam` is live on the internet with four doors under one identity:
+
+```
+                 @adam
+                   │
+   ┌───────────┬───┴───────┬────────────┐
+   │           │           │            │
+ adam@       /adam      adam://      @adam ⇄ @sam
+ inbox      profile     storage      agent-to-agent
+```
+
+| Door | What Claim wires |
+|---|---|
+| `@adam` | Private Firecracker microVM running the agent |
+| `adam@` | Real inbox (SPF/DKIM) anyone can email without signup |
+| `/adam` | Public profile: abilities + receipt feed |
+| `adam://` | Files, memory, and tools under one root |
+
+### Why this is the hero (not a feature list)
+
+1. **Demo fits in one screenshot.** Claim → profile URL. That is the viral loop.
+2. **Identity before tasks.** Competitors ship chat UIs; we ship an address.
+3. **Every install advertises.** Profile badge "claimed with handle" + shareable `/@name`.
+4. **Network effect baked in.** `@adam ⇄ @sam` only works once Claim exists at scale.
+
+### Hero acceptance (must ship in v0.1)
+
+| Check | Pass criteria |
+|---|---|
+| Time-to-alive | P95 ≤ 60s from `claim` to reachable `/@name` |
+| Cold VM | P95 ≤ 8s resume from suspend |
+| Email | External Gmail → `name@platform` delivers to agent queue |
+| Receipt | First inbound email produces a public (redacted) receipt on `/@name` |
+| Waste | Idle VM suspends ≤ 10 min; Claim cannot leave a forever-running bill |
+| Fail closed | If mail or VM step fails, Claim rolls back handle reservation |
+
+### Hero non-negotiables
+
+- Claim is **atomic or rolled back** (no orphan VMs, no half-emails).
+- Claim burns **prepaid credit check first**; refuse before provisioning if balance is empty.
+- Claim never auto-retries more than **twice**; then surfaces a clear error + receipt `claim_failed`.
+- Claim always prints three lines on success: profile URL, mail address, `handle status` hint.
+
+**Everything else in this spec exists to make Claim trustworthy, cheap, and shareable.**
+
+---
+
+
+## 0. Product surface (beyond Claim)
+
+| Command / surface | Behavior |
+|---|---|
+| `npx handle claim @name` | **Hero.** Reserve handle, provision microVM, wire email + storage + profile |
+| `handle status` | Health, spend today, last receipt |
+| `handle ping @other "…"` | Agent-to-agent message with receipt on both profiles |
+| `handle move --to <host>` | Export identity bundle; import on new host |
+| `GET /@name` | Public profile + abilities + public receipts |
+| `adam@…` | Inbound email → agent inbox queue |
+
+---
+
+## 1. Non-goals and hard limits
 
 ### Non-goals (v0.1–v0.3)
 - Multi-tenant "shared" agents (one person per handle)
@@ -17,9 +86,10 @@
 - Mobile apps
 - Billing UI beyond prepaid credits
 - Federated DNS / blockchain identity
+- Any path that bypasses Claim (no "create agent without handle")
 
 ### Hard usage limits (platform + per-agent)
-These are product requirements, not niceties. Every stage that can burn money must enforce them.
+These are product requirements, not niceties. Every stage that can burn money must enforce them. **Claim itself must respect the prepaid circuit breaker before it starts a microVM.**
 
 | Limit | Default | Purpose |
 |---|---|---|
@@ -38,35 +108,13 @@ These are product requirements, not niceties. Every stage that can burn money mu
 | Concurrent microVMs per user | 1 | One handle = one machine |
 | Retries on same failure | 2 max, then escalate | Kill loops |
 | Same tool+args within 60s | blocked | Dedup loops |
+| Claim attempts per account | 5 / day, 1 / min | Anti land-grab abuse |
 
-**Budget circuit breaker:** if daily spend projected > prepaid balance, freeze outbound actions (email, ping, paid model calls). Profile and local reads stay up.
-
----
-
-## 1. Product surface (what "done" means)
-
-```
-                 @adam
-                   │
-   ┌───────────┬───┴───────┬────────────┐
-   │           │           │            │
- adam@       /adam      adam://      @adam ⇄ @sam
- inbox      profile     storage      agent-to-agent
-```
-
-| Command / surface | Behavior |
-|---|---|
-| `npx handle claim @name` | Reserve handle, provision microVM, wire email + storage + profile |
-| `handle status` | Health, spend today, last receipt |
-| `handle ping @other "…"` | Agent-to-agent message with receipt on both profiles |
-| `handle move --to <host>` | Export identity bundle; import on new host |
-| `GET /@name` | Public profile + abilities + public receipts |
-| `adam@…` | Inbound email → agent inbox queue |
+**Budget circuit breaker:** if daily spend projected > prepaid balance, freeze outbound actions (email, ping, paid model calls). Profile and local reads stay up. Claim refuses to provision.
 
 ---
 
 ## 2. Architecture
-
 ```
 ┌──────────── CLI / API ────────────┐
 │  claim · status · ping · move     │
@@ -92,7 +140,6 @@ These are product requirements, not niceties. Every stage that can burn money mu
 ---
 
 ## 3. Repo layout
-
 ```
 handle/
 ├── README.md
@@ -127,7 +174,6 @@ Language default: **TypeScript** (Node 22+) for control plane + CLI; **Rust or G
 ---
 
 ## 4. Stages (ship gates)
-
 Each stage has: **deliverables**, **acceptance tests**, **usage guards**, **exit criteria**. Do not start stage N+1 until exit criteria for N are green.
 
 ### Stage 0 — Foundations (1–3 days)
@@ -141,7 +187,7 @@ Each stage has: **deliverables**, **acceptance tests**, **usage guards**, **exit
 
 **Exit:** CI green; `packages/quota` can deny a fake over-limit call.
 
-### Stage 1 — Handle registry (3–5 days)
+### Stage 1 — Handle registry (supports Hero Claim) (3–5 days)
 
 | Deliverable | Detail |
 |---|---|
@@ -163,7 +209,7 @@ Each stage has: **deliverables**, **acceptance tests**, **usage guards**, **exit
 
 **Usage guards:** max 1 VM/user; hard stop if CPU > 95% for 5 min; no auto-restart loop (max 2 restarts / hour).
 
-**Exit:** Cold start ≤ 8s P95 in staging; idle cost ≈ storage only.
+**Exit:** Cold start ≤ 8s P95 in staging; idle cost ≈ storage only; Claim can boot a VM as one step in its transaction.
 
 ### Stage 3 — Storage `adam://` (3–5 days)
 
@@ -236,11 +282,11 @@ Each stage has: **deliverables**, **acceptance tests**, **usage guards**, **exit
 
 **Exit:** Move staging→staging; old host refuses writes after cutover; chain still verifies.
 
-### Stage 9 — CLI polish + OpenClaw bridge stub (3–5 days)
+### Stage 9 — Hero Claim polish + OpenClaw bridge stub (3–5 days)
 
 | Deliverable | Detail |
 |---|---|
-| `npx handle claim` happy path | One command demo GIF |
+| `npx handle claim` happy path | **Hero demo:** one command + GIF; must meet Hero acceptance table |
 | Docs | Quickstart ≤ 60 lines |
 | Bridge stub | SDK method `fromOpenClawSession` behind feature flag |
 
@@ -257,7 +303,6 @@ Each stage has: **deliverables**, **acceptance tests**, **usage guards**, **exit
 ---
 
 ## 5. Data model (core)
-
 ```
 Handle
   id, name, owner_id, status (active|frozen|moved),
@@ -278,7 +323,6 @@ VmState
 ---
 
 ## 6. API sketch (control plane)
-
 | Method | Path | Notes |
 |---|---|---|
 | POST | `/v1/handles` | claim |
@@ -294,7 +338,6 @@ All mutating routes: auth + idempotency key + quota check **before** work.
 ---
 
 ## 7. Usage waste playbook
-
 | Failure mode | Detection | Response |
 |---|---|---|
 | Tool thrash | tool count / turn | Soft stop → receipt `limited:tools` |
@@ -311,7 +354,6 @@ All mutating routes: auth + idempotency key + quota check **before** work.
 ---
 
 ## 8. Security (minimum)
-
 - Agent runs as non-root in jailer; no Docker-in-Docker
 - Egress allowlist (mail, a2a peers, model API only)
 - Secrets as short-lived refs; redacted in receipts
@@ -322,7 +364,6 @@ All mutating routes: auth + idempotency key + quota check **before** work.
 ---
 
 ## 9. Testing strategy
-
 | Layer | What |
 |---|---|
 | Unit | Quota math, name rules, hash chain |
@@ -336,7 +377,6 @@ CI blocks merge if any chaos test expects a kill and does not get one.
 ---
 
 ## 10. Milestone checklist
-
 | Stage | Name | Est. days | Gate |
 |---|---|---|---|
 | 0 | Foundations | 1–3 | CI + quota stub |
@@ -356,7 +396,6 @@ CI blocks merge if any chaos test expects a kill and does not get one.
 ---
 
 ## 11. Immediate next actions
-
 1. Merge this file to `SM260845/handle` as `BUILD_SPEC.md`.
 2. Open issues: one per stage (0–9) with acceptance criteria copied from here.
 3. Decide platform email domain and cloud region (blocks Stage 2/4).
@@ -365,5 +404,4 @@ CI blocks merge if any chaos test expects a kill and does not get one.
 ---
 
 ## 12. One-line North Star
-
-Ship a claimable `@handle` that boots a private microVM, receives real email, publishes receipts, talks to other handles, and **cannot burn money in a loop**.
+Ship **Claim**: one command that births `@name` with mail, microVM, profile, and receipts — shareable in sixty seconds — and **cannot burn money in a loop**.

@@ -1,0 +1,34 @@
+name: Feature request
+description: Propose a change that fits the Claim north star.
+title: "[feature] "
+labels: ["type:feature", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What user need does this serve? How does it help Claim?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Likely stage
+      options: ["0","1","2","3","4","5","6","7","8","9","10","unknown"]
+  - type: checkboxes
+    id: limits
+    attributes:
+      label: Limits check
+      options:
+        - label: This does not bypass `@handle/quota` or create an agent without a handle
+          required: true

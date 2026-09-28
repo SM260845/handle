@@ -4,8 +4,8 @@ Stages are ship gates. Do not start N+1 until N's exit criteria are green. Full 
 
 | Stage | Name | Gate |
 |---|---|---|
-| 0 | Foundations | CI + quota denies over-limit |
-| 1 | Registry | Claim unique + rate limited |
+| **0** ✓ | Foundations | CI + quota denies over-limit |
+| **1** ✓ | Registry | Claim unique + rate limited |
 | 2 | MicroVM | Cold start + idle suspend |
 | 3 | Storage | Quota reject |
 | 4 | Mail | Round-trip + send cap |

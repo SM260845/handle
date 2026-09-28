@@ -20,5 +20,9 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run --root ../.. --dir packages/api"
+  },
+  "dependencies": {
+    "@handle/quota": "workspace:*",
+    "@handle/registry": "workspace:*"
   }
 }

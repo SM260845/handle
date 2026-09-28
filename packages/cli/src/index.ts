@@ -1,9 +1,11 @@
 /**
  * handle CLI — `handle` binary + `npx handle`.
  *
- * TODO(Stage 9): `claim` happy path meeting the Hero acceptance table (BUILD_SPEC.md "Hero feature").
- * Commands are stubs that exit non-zero until their stage ships.
+ * TODO(Stage 9): full Claim happy path (VM + mail + storage + profile) meeting the Hero table.
+ * Stage 1: `claim` can hit a registry API when HANDLE_API_URL + HANDLE_API_TOKEN are set.
  */
+
+import { claimViaApi } from './claim.js';
 
 export const COMMANDS = {
   claim: { stage: 9, summary: 'Reserve @name, provision microVM, wire email + storage + profile' },
@@ -31,12 +33,20 @@ export function usage(): string {
   return ['Usage: handle <command> [args]', '', 'Commands:', ...lines].join('\n');
 }
 
-/** Runs the CLI and returns the process exit code. */
-export function run(argv: readonly string[], io: Io = defaultIo): number {
-  const [cmd] = argv;
+/** Runs the CLI. May return a Promise when `claim` talks to HANDLE_API_URL. */
+export function run(argv: readonly string[], io: Io = defaultIo): number | Promise<number> {
+  const [cmd, ...rest] = argv;
   if (!cmd || cmd === '--help' || cmd === '-h' || cmd === 'help') {
     io.out(usage());
     return cmd ? 0 : 1;
+  }
+  if (cmd === 'claim') {
+    const name = rest[0];
+    if (!name) {
+      io.err('Usage: handle claim @name');
+      return 1;
+    }
+    return claimViaApi(name, process.env, io);
   }
   if (Object.hasOwn(COMMANDS, cmd)) {
     const { stage } = COMMANDS[cmd as CommandName];

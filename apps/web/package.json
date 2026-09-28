@@ -1,0 +1,13 @@
+{
+  "name": "@handle/web",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Marketing site + profile host",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --root ../.. --dir apps/web"
+  }
+}

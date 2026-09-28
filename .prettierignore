@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+pnpm-lock.yaml
+_site
+# Markdown is hand-formatted (ASCII diagrams, spec tables)
+*.md
+.github/ISSUE_TEMPLATE/
+.github/labeler.yml
+.github/release-drafter.yml
+.github/dependabot.yml
+.github/workflows/

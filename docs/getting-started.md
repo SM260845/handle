@@ -10,7 +10,7 @@
 ## Clone and check
 
 ```bash
-git clone https://github.com/SM260845/handle.git
+git clone https://github.com/ao3575911/handle.git
 cd handle
 pnpm install
 pnpm check
@@ -28,6 +28,6 @@ Today every command prints `not implemented yet (Stage N)` and exits non-zero. T
 
 ## Read next
 
-1. [`BUILD_SPEC.md`](https://github.com/SM260845/handle/blob/main/BUILD_SPEC.md) — hero Claim, limits, stages
-2. [`AGENTS.md`](https://github.com/SM260845/handle/blob/main/AGENTS.md) — rules for AI coding agents
-3. [`CONTRIBUTING.md`](https://github.com/SM260845/handle/blob/main/CONTRIBUTING.md)
+1. [`BUILD_SPEC.md`](https://github.com/ao3575911/handle/blob/main/BUILD_SPEC.md) — hero Claim, limits, stages
+2. [`AGENTS.md`](https://github.com/ao3575911/handle/blob/main/AGENTS.md) — rules for AI coding agents
+3. [`CONTRIBUTING.md`](https://github.com/ao3575911/handle/blob/main/CONTRIBUTING.md)

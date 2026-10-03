@@ -4,8 +4,8 @@
 
 | Need | Where |
 |---|---|
-| Bugs / features | [GitHub Issues](https://github.com/SM260845/handle/issues) |
-| Design / Q&A | [GitHub Discussions](https://github.com/SM260845/handle/discussions) |
+| Bugs / features | [GitHub Issues](https://github.com/ao3575911/handle/issues) |
+| Design / Q&A | [GitHub Discussions](https://github.com/ao3575911/handle/discussions) |
 | Security | [`SECURITY.md`](./SECURITY.md) — private advisory, not a public issue |
 | Spec / stages | [`BUILD_SPEC.md`](./BUILD_SPEC.md) and the `stage:N` issues |
 

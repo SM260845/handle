@@ -3,7 +3,7 @@
 - **Status:** Accepted
 - **Date:** 2026-09-28
 - **Stage:** 0 (Foundations) — required by `BUILD_SPEC.md` §4 "Spec frozen"
-- **Deciders:** @SM260845
+- **Deciders:** @ao3575911
 
 ## Context
 

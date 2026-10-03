@@ -1,6 +1,6 @@
 # handle — Build Plan & Spec
 
-**Repo:** https://github.com/SM260845/handle  
+**Repo:** https://github.com/ao3575911/handle  
 **Date:** 28 Sep 2026 (PT)  
 **Status:** Spec frozen at Stage 0 (see [ADR 0001](./docs/adr/0001-firecracker-microvm.md)). Changes require a PR that updates this file and, if architectural, a new ADR.
 
@@ -396,7 +396,7 @@ CI blocks merge if any chaos test expects a kill and does not get one.
 ---
 
 ## 11. Immediate next actions
-1. Merge this file to `SM260845/handle` as `BUILD_SPEC.md`.
+1. Merge this file to `ao3575911/handle` as `BUILD_SPEC.md`.
 2. Open issues: one per stage (0–9) with acceptance criteria copied from here.
 3. Decide platform email domain and cloud region (blocks Stage 2/4).
 4. Do **not** write agent prompt glue until Stage 5 governor exists.

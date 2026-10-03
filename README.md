@@ -1,6 +1,6 @@
 # handle
 
-[![CI](https://github.com/SM260845/handle/actions/workflows/ci.yml/badge.svg)](https://github.com/SM260845/handle/actions/workflows/ci.yml)
+[![CI](https://github.com/ao3575911/handle/actions/workflows/ci.yml/badge.svg)](https://github.com/ao3575911/handle/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Pages](https://img.shields.io/badge/docs-GitHub%20Pages-green)](https://sm260845.github.io/handle/)
 
@@ -103,7 +103,7 @@ pnpm --filter handle build
 node packages/cli/dist/bin.js claim @adam
 ```
 
-Docs: [Getting started](https://sm260845.github.io/handle/getting-started.html) · [Architecture](https://sm260845.github.io/handle/architecture.html) · [Roadmap](https://sm260845.github.io/handle/roadmap.html) · [Discussions](https://github.com/SM260845/handle/discussions) · [Contributing](./CONTRIBUTING.md)
+Docs: [Getting started](https://sm260845.github.io/handle/getting-started.html) · [Architecture](https://sm260845.github.io/handle/architecture.html) · [Roadmap](https://sm260845.github.io/handle/roadmap.html) · [Discussions](https://github.com/ao3575911/handle/discussions) · [Contributing](./CONTRIBUTING.md)
 
 ## Principles
 

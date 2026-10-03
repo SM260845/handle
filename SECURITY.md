@@ -11,7 +11,7 @@
 
 **Do not open a public GitHub issue for security reports.**
 
-Please use [GitHub private vulnerability reporting](https://github.com/SM260845/handle/security/advisories/new) (preferred) or email the maintainers via the contact on the GitHub profile.
+Please use [GitHub private vulnerability reporting](https://github.com/ao3575911/handle/security/advisories/new) (preferred) or email the maintainers via the contact on the GitHub profile.
 
 Include:
 

@@ -24,4 +24,4 @@
 
 Every mutating route: **auth + idempotency key + `@handle/quota` check before work.**
 
-See [`BUILD_SPEC.md`](https://github.com/SM260845/handle/blob/main/BUILD_SPEC.md) §2–§8 for the data model, API sketch, usage-waste playbook, and security minimums.
+See [`BUILD_SPEC.md`](https://github.com/ao3575911/handle/blob/main/BUILD_SPEC.md) §2–§8 for the data model, API sketch, usage-waste playbook, and security minimums.

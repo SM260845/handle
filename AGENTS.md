@@ -1,6 +1,6 @@
 # AGENTS.md — guide for AI coding agents working on `handle`
 
-**Repo:** https://github.com/SM260845/handle
+**Repo:** https://github.com/ao3575911/handle
 **North star:** Ship **Claim** — `npx handle claim @name` births mail + microVM + profile + receipts in ≤ 60s, and **cannot burn money in a loop**.
 
 Read [`BUILD_SPEC.md`](./BUILD_SPEC.md) fully before writing code beyond Stage 0.

@@ -26,7 +26,7 @@ About sixty seconds later, `@adam` is live with four doors under one identity:
 
 ## Status
 
-**Pre-alpha.** Stage 0–1 done (foundations + registry). Claim is not live yet. See the [roadmap](./roadmap.md) and [`BUILD_SPEC.md`](https://github.com/SM260845/handle/blob/main/BUILD_SPEC.md).
+**Pre-alpha.** Stage 0–1 done (foundations + registry). Claim is not live yet. See the [roadmap](./roadmap.md) and [`BUILD_SPEC.md`](https://github.com/ao3575911/handle/blob/main/BUILD_SPEC.md).
 
 ## Next
 
@@ -35,4 +35,4 @@ About sixty seconds later, `@adam` is live with four doors under one identity:
 - [Roadmap](./roadmap.md)
 - [ADR 0001: Firecracker microVMs](./adr/0001-firecracker-microvm.md)
 - [Secrets pattern](./secrets.md)
-- [Discussions](https://github.com/SM260845/handle/discussions)
+- [Discussions](https://github.com/ao3575911/handle/discussions)
